@@ -7,7 +7,7 @@ Example
 ==================================
 Suppose you have a model with many string properties:
 
-```
+```C#
 public class ShippingInfo
 {
     public string firstName { get; set; }
@@ -21,7 +21,7 @@ public class ShippingInfo
 
 Now suppose this information gets sent to the server via an AJAX PUT or POST call. In order to ensure none of the values are HTML encoded, you would have to parse each of them out manually. In your WebAPI Controller, you might have something like this:
 
-```
+```C#
 public async Task<HttpResponseMessage> Post([FromBody]ShippingInfo info)
 {
   info.firstName = WebUtility.HtmlDecode(info.firstName);
@@ -43,7 +43,7 @@ We created a simple System.Web.Http.Filters.ActionFilterAttribute that inspects 
 
 To use this action filter on all methods inside a WebAPI controller, simply decorate your class with this method.
 
-```
+```C#
 [HttpStringDecodeFilter]
 public class AddressController : ApiController
 {
@@ -69,7 +69,7 @@ public class AddressController : ApiController
 
 To use this action filter on a specific method, you can decorate that method with the attribute:
 
-```
+```C#
 public class AddressController : ApiController
 {
     // GET
