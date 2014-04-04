@@ -19,18 +19,20 @@ namespace CN.WebApi.Filters
                 // For each of the items in the PUT/POST
                 foreach (var item in actionContext.ActionArguments.Values)
                 {
-                    // Get the type of the object
-                    Type type = item.GetType();
+                    try {
+                        // Get the type of the object
+                        Type type = item.GetType();
 
-                    // For each property of this object, html decode it if it is of type string
-                    foreach (PropertyInfo propertyInfo in type.GetProperties())
-                    {
-                        var prop = propertyInfo.GetValue(item);
-                        if (prop != null && prop.GetType() == typeof(string))
+                        // For each property of this object, html decode it if it is of type string
+                        foreach (PropertyInfo propertyInfo in type.GetProperties())
                         {
-                            propertyInfo.SetValue(item, WebUtility.HtmlDecode((string)prop));
+                            var prop = propertyInfo.GetValue(item);
+                            if (prop != null && prop.GetType() == typeof(string))
+                            {
+                                propertyInfo.SetValue(item, WebUtility.HtmlDecode((string)prop));
+                            }
                         }
-                    }
+                    } catch {}
                 }
             }
         }
