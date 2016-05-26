@@ -6,7 +6,7 @@ using System.Web.Http.Filters;
 
 namespace CN.WebApi.Filters
 {
-    public class DecodeFilter : ActionFilterAttribute
+    public class HttpStringDecodeFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
