@@ -28,7 +28,7 @@ namespace CN.NetCore.Filters
                             var prop = propertyInfo.GetValue(item);
                             if (prop != null && prop.GetType() == typeof(string))
                             {
-                                propertyInfo.SetValue(item, WebUtility.HtmlDecode((string)prop));
+                                propertyInfo.SetValue(item, System.Uri.UnescapeDataString((string)prop));
                             }
                         }
                     } catch {}
